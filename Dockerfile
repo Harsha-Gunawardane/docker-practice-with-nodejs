@@ -8,6 +8,7 @@ COPY package.json .
 RUN npm install
 # then copy other stuff
 COPY . ./
-EXPOSE 3000
+ENV PORT 3000
+EXPOSE $PORT
 # command for run the container
-CMD ["node", "index.js"]
+CMD ["npm", "run", "dev"]
