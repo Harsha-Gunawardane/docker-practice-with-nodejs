@@ -4,13 +4,26 @@ services:
     build: .
     ports:
       - "3000:3000"
-    volumes:
-      - ./:/app
-      - /app/node_modules
     environment:
       - PORT=3000
+    depends_on:
+      - mongo
     # env_file:
     #   -./.env
+    
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mrgunawardaneofficial
+      - MONGO_INITDB_ROOT_PASSWORD=Hara9914
+    volumes:
+      - mongo-db:/data/db
 
-# docker-compose up -d ---> to create container
-# docker-compose down -v ---> to delete container
+volumes:
+  mongo-db:
+
+# docker-compose up -d |---> to create container
+# docker-compose up -d --build |---> to build image from scratch
+# docker-compose down -v |---> to delete container
+
+# this service name as use as DNS of the service
